@@ -1,0 +1,138 @@
+
+Html<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer de Academia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🏋️ Timer de Intervalo</h1>
+        <p>Controle seu descanso entre séries!</p>
+    </header>
+
+    <main>
+        <div class="timer-container">
+            <span id="timer">00:30</span>
+            <div class="buttons">
+                <button id="start">Iniciar</button>
+                <button id="pause">Pausar</button>
+                <button id="reset">Resetar</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>💪 Mantenha o foco e supere seus limites!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+🎨 style.css
+Cssbody {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #111, #222);
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 20px;
+    background-color: #ff0000;
+}
+
+h1 {
+    margin: 0;
+}
+
+.timer-container {
+    margin-top: 50px;
+}
+
+#timer {
+    font-size: 5rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.buttons button {
+    background-color: #ff0000;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.buttons button:hover {
+    background-color: #cc0000;
+}
+
+footer {
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #111;
+    font-size: 0.9rem;
+}
+
+
+⚡ script.js
+Javascriptlet timerDisplay = document.getElementById("timer");
+let startBtn = document.getElementById("start");
+let pauseBtn = document.getElementById("pause");
+let resetBtn = document.getElementById("reset");
+
+let time = 30; // segundos
+let countdown;
+let isRunning = false;
+
+function updateDisplay() {
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    timerDisplay.textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+startBtn.addEventListener("click", () => {
+    if (!isRunning) {
+        isRunning = true;
+        countdown = setInterval(() => {
+            if (time > 0) {
+                time--;
+                updateDisplay();
+            } else {
+                clearInterval(countdown);
+                isRunning = false;
+                alert("⏱ Intervalo finalizado! Hora de voltar ao treino!");
+            }
+        }, 1000);
+    }
+});
+
+pauseBtn.addEventListener("click", () => {
+    clearInterval(countdown);
+    isRunning = false;
+});
+
+resetBtn.addEventListener("click", () => {
+    clearInterval(countdown);
+    time = 30;
+    updateDisplay();
+    isRunning = false;
+});
+
+updateDisplay();
+
+Se quiser, posso adaptar para ter um cronômetro progressivo ou permitir que o usuário escolha o tempo de descanso.
+Quer que eu já faça essa versão mais interativa?
